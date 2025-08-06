@@ -19,11 +19,13 @@ GET /api/health
 
 ### 🔸 Response
 
+```
 {
   "status": "ok",
   "uptime": "752.8788478"
   "timestamp": "2025-08-06T19:51:00Z"
 }
+```
 
 ----
 
@@ -47,6 +49,7 @@ POST /api/upload-resume
 
 ### 🔸 Sample Response
 
+```
 {
     "success": true,
     "message": "...",
@@ -89,6 +92,7 @@ POST /api/upload-resume
 
     }
 }
+```
 
 ----
 
@@ -99,13 +103,16 @@ Description: Returns a list of job recommendations based on user query and exper
 
 ### 🔸 Request Body
 
+```
 {
   "resume_keywords": ["github", "...."],
   "experience_years": 5
 }
+```
 
 ### 🔸 Response
 
+```
 {  
   "success": true,
   "message": "...",
@@ -121,6 +128,7 @@ Description: Returns a list of job recommendations based on user query and exper
     }
   ]
 }
+```
 
 ----
 
@@ -131,14 +139,17 @@ Description: Rewrites a resume to better align with a job description and missin
 
 ### 🔸 Sample Request
 
+```
 {
   "resume_text": "Frontend developer with 2 years of experience in React...",
   "jd_text": "We are hiring a full stack developer with experience in Next.js, SSR, TailwindCSS...",
   "missing_fields": ["Next.js", "SSR", "TailwindCSS"]
 }
+```
 
 ### 🔸 Sample Response
 
+```
 {
   "success": true,
   "message": "...",
@@ -146,5 +157,6 @@ Description: Rewrites a resume to better align with a job description and missin
     "rewritten_resume_txt": "Frontend developer with 2 years of experience in React and TailwindCSS. Recently worked on SSR with Next.js to improve performance..."
   }
 }
+```
 
 ------

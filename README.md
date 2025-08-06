@@ -12,7 +12,8 @@ An intelligent full-stack platform that helps users:
 
 | Upload Resume View | Job Recommendations | Rewritten Resume |
 | ------------------ | ------------------- | ---------------- |
-| ![Upload View](./screenshots/upload_view.png) | ![Job Recs](./screenshots/job_recommendations.png) | ![Rewritten](./screenshots/reWritten_resume.png) | ![Dashboard Insights](./screenshots/dashboard_insights.png)
+| ![Upload View](./screenshots/upload_view.png) | ![Job Recs](./screenshots/job_recommendations.png) | ![Rewritten](./screenshots/reWritten_resume.png) |
+![Dashboard Insights](./screenshots/dashboard_insights.png) 
 
 ---
 
@@ -28,7 +29,7 @@ An intelligent full-stack platform that helps users:
 
 ## 📐 System Design (High-Level Architecture)
 
-text
+```text
 +-------------------+       /upload-resume        +---------------------+
 |  React Frontend   | ─────────────────────────▶ | FastAPI Backend     |
 |                   |                            | /ai/analyze         |
@@ -60,7 +61,7 @@ text
                                        | resumeController → Frontend  |
                                        +-------------------------------+
 
-
+```
 
 ## 🔁 Feature Flow Breakdown
 ### 1️⃣ Resume Upload & Matching
@@ -102,7 +103,7 @@ Return updated text (auto-download)
 
 ### 📦 Sample Match Response
 
-export interface MatchResult {
+```export interface MatchResult {
   jd_confidence: number;
   fit_score: number;
   job_keywords: string[];
@@ -115,10 +116,12 @@ export interface MatchResult {
   parsed_resume_text: string;
   parsed_jd_text: string;
 }
+```
 
 --------
 
 ## 🧠 AI / NLP Modules
+```
 
 | Module                     | Description                      | Tech Used                 |
 | -------------------------- | -------------------------------- | ------------------------- |
@@ -126,19 +129,20 @@ export interface MatchResult {
 | `resume_match_engine.py`   | JD ↔ Resume semantic comparison  | FAISS Flat L2             |
 | `rewrite_resume_engine.py` | Resume enhancement with AI       | OpenAI GPT (via Groq API) |
 | `job_scraper.py`           | Scrape job listings in real-time | Puppeteer or SerpAPI      |
-
+```
 
 ------
 
 ## 🌐 API Endpoints
 
+```
 | Route                  | Method | Description                            |
 | ---------------------- | ------ | -------------------------------------- |
 | `/upload-resume`       | POST   | Upload resume & JD → get match results |
 | `/job-recommendations` | POST   | Get personalized job recommendations   |
 | `/rewrite-resume`      | POST   | Get AI-enhanced resume version         |
 | `/health`              | POST   | Server health check                    |
-
+```
 
 ----
 
@@ -161,7 +165,7 @@ Built using Next.JS + Tailwind CSS
 
 ## 🔐 Tech Stack
 
-
+```
 | Layer       | Tech Used                  |
 | ----------- | -------------------------- |
 | Frontend    | NextJS, Tailwind CSS        |
@@ -171,6 +175,7 @@ Built using Next.JS + Tailwind CSS
 | Caching     | Redis                      |
 | Scraping    | Puppeteer / SerpAPI        |
 | Cloud/API   | Groq + OpenAI Chat API     |
+```
 
 ----
 
@@ -183,8 +188,11 @@ Node.js 18+
 
 ### 🔧 Backend Setup
 cd backend
-python -m venv venv
-source venv/bin/activate  # or venv\Scripts\activate
+npm install
+npm run start
+
+### 🔧 AI Service Setup
+cd ai_service
 pip install -r requirements.txt
 uvicorn main:app --reload
 

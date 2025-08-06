@@ -12,6 +12,7 @@ This AI-powered platform helps users upload their resume and a job description (
 
 ## 📦 Tech Stack
 
+```
 | Layer         | Tech Stack                      |
 |---------------|----------------------------------|
 | Frontend      | Next.js (TypeScript), TailwindCSS |
@@ -22,11 +23,13 @@ This AI-powered platform helps users upload their resume and a job description (
 | Hosting       | Vercel (Frontend), EC2 (Backend), Render/HF Spaces (AI) |
 | File Storage  | Cloudinary / AWS S3 (Resume Uploads) |
 | Auth (optional) | Clerk.dev or Auth0 (Free Tier) |
+```
 
 ---
 
 ## 🧭 High-Level Architecture Diagram
 
+```
 ┌──────────────┐        ┌──────────────────────┐        ┌───────────────────────────┐
 │  Next.js UI  │ <────> │  Node.js (Express)   │ <────> │  AI Microservice (Python) │
 │ (Vercel)     │        │  (EC2/Render/Fly.io) │        │  OpenAI + FAISS + VectorDB│
@@ -38,7 +41,7 @@ This AI-powered platform helps users upload their resume and a job description (
      │                                                    └────────────────┘
      ↓
 [Resume Upload + JD Input]
-
+```
 
 ---
 
@@ -93,6 +96,7 @@ This AI-powered platform helps users upload their resume and a job description (
 
 ### 🧠 AI/ML Layer Enhancements
 
+```
 | Task                         | Tech Used                                                                 |
 |------------------------------|---------------------------------------------------------------------------|
 | Resume & JD Parsing          | `pdfplumber`, `PyMuPDF`, `spaCy`                                         |
@@ -105,16 +109,18 @@ This AI-powered platform helps users upload their resume and a job description (
 | Fit Score Calculation        | Custom cosine + FAISS match score (`match_score`)                        |
 | Recommendations              | Custom rules based on score + missing/matched skills                     |
 | LinkedIn Role Suggestions    | `Puppeteer` / `SerpAPI` (scraping & job fetching, later phase) 
+```
 
 ---
 
 ## 📂 Folder Structure
 
+```
 /frontend → Next.js App (Vercel)
 /backend → Node.js Express App (EC2)
 /ai_service → Python FastAPI AI engine (FAISS, OpenAI)
 /docs → architecture.md, api.md, README.md, system_design.drawio
-
+```
 
 
 ---

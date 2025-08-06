@@ -12,7 +12,7 @@ An intelligent system that helps users:
 
 ## 🖼️ High-Level Architecture
 
-text
+```
 +-------------------+       /upload-resume        +---------------------+
 |  React Frontend   | ─────────────────────────▶ | FastAPI Backend     |
 |                   |                            | /ai/analyze         |
@@ -52,6 +52,7 @@ text
                                        | resumeController → Frontend  |
                                        +-------------------------------+
 
+```
 
 ## 🔁 Flow Breakdown
 1. Resume Upload & Matching Flow
@@ -91,6 +92,7 @@ Final result returned via resumeController
 
 
 ### 📦 Sample Response:
+```
 export interface MatchResult {
   jd_confidence: number;
   fit_score: number;
@@ -104,12 +106,15 @@ export interface MatchResult {
   parsed_resume_text: string;
   parsed_jd_text: string;
 }
+```
 
 
 2. Job Recommendation Flow
 ### Route: POST /job-recommendations
 
 ### Input:
+
+```
   resume_keywords: string[]
   experience_years: number
 
@@ -128,15 +133,18 @@ export interface MatchResult {
 └──────────────────────────────┘
          ↓
         JSON
+```
 
 3. Resume Rewrite Flow
 ### Route: POST /rewrite-resume
 
+```
 {
   "resume_text": "...",
   "jd_text": "...",
   "missing_fields": [...]
 }
+```
 
 
 ### Flow:
@@ -165,13 +173,14 @@ Returns: Updated Resume Text (Plaintext/JSON)
 
 ## 💡 AI / NLP Modules
 
+```
 | Module                     | Description                        | Tech Used                   |
 | -------------------------- | ---------------------------------- | --------------------------- |
 | `embedding.py`             | Generates sentence embeddings      | `all-MiniLM-L6-v2`   |
 | `resume_match_engine.py`   | Matches JD and Resume semantically | FAISS Flat L2, text parsing |
 | `rewrite_resume_engine.py` | Rewrite resume using context       | OpenAI GPT (via Groq API)   |
 | `job_scraper.py`           | Real-time job scraping             | Puppeteer          |
-
+```
 
 ----
 
@@ -198,7 +207,7 @@ Clean modern UX with Tailwind UI
 
 ## 🔐 Tech Stack
 
-
+```
 | Layer       | Tech                       |
 | ----------- | -------------------------- |
 | Frontend    | React + Tailwind CSS       |
@@ -208,22 +217,25 @@ Clean modern UX with Tailwind UI
 | Caching     | Redis                      |
 | Scraping    | Puppeteer or SerpAPI       |
 | Cloud/API   | Groq + OpenAI Chat API     |
-
+```
 
 ## ✅ APIs Summary
 
+```
 | Route                  | Method | Description                            |
 | ---------------------- | ------ | -------------------------------------- |
 | `/upload-resume`       | POST   | Upload Resume & JD, get match insights |
 | `/job-recommendations` | POST   | Get real-time job suggestions          |
 | `/rewrite-resume`      | POST   | AI-enhanced resume rewrite             |
 | `/health`              | POST   | to check the server health             |
-
+```
 
 
 ------
 
 ## 🧠 Diagram Summary
+
+```
 [React Frontend]
     ↓ Upload Resume & JD
 [FastAPI Backend]
@@ -245,3 +257,4 @@ Clean modern UX with Tailwind UI
 [Groq GPT Engine]
     ↓
 [Updated Resume → Auto Download]
+```
