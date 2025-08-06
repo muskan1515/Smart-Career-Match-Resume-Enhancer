@@ -1,0 +1,31 @@
+# 🔒 Environment files
+**/.env
+
+# 🔁 Node.js files
+**/node_modules/
+**/package-lock.json
+
+# 🐍 Python artifacts
+**/__pycache__/
+**/.venv/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+
+# 💻 macOS
+**/.DS_Store
+
+# 🧪 Logs and debug
+**/*.log
+**/logs/
+
+# 🚀 IDEs & Editors
+**/.vscode/
+**/.idea/
+
+# 🧪 Jupyter and notebook cache
+**/.ipynb_checkpoints/
+
+# 📦 Build artifacts
+**/dist/
+**/build/

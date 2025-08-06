@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+openai
+faiss-cpu
+pdfplumber
+scikit-learn
+python-dotenv

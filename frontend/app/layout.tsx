@@ -4,6 +4,9 @@ import "./globals.css";
 import Header from "@/components/common/header";
 import Footer from "@/components/common/footer";
 import HealthWatcher from "@/components/common/ServerDown";
+import GlobalMessage from "@/components/common/GlobalMessage";
+import Loader from "@/components/common/Loader";
+import { ReduxProvider } from "@/store/provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,12 +33,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header />
-        <div className="min-h-screen flex flex-col">
-          {children}
-        </div>
-        {/* <HealthWatcher/> */}
-        <Footer />
+        <ReduxProvider>
+          <Header />
+          <div className="min-h-screen flex flex-col">{children}</div>
+          <HealthWatcher />
+          <Footer />
+          <GlobalMessage />
+          <Loader />
+        </ReduxProvider>
       </body>
     </html>
   );

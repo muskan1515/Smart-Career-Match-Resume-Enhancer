@@ -1,0 +1,53 @@
+👤 Backend Developer Resume (Highly Matched, 90%+)
+Muskan Kushwah
+Backend Developer
+Bhopal, India • muskankushwah85@gmail.com • GitHub: muskan1515
+
+🧠 Professional Summary
+Backend Developer with ~3 years of experience building scalable REST APIs and microservices using Node.js, Express.js, MongoDB, PostgreSQL, and Docker on AWS cloud. Skilled in designing secure, performant server-side systems and leading deployments using CI/CD pipelines. Passionate about performance optimization, automation, and clean architecture.
+
+💼 Experience
+Chaperone (Remote) — Technical Lead
+Mar 2025 – Present
+
+Architected and deployed a microservices-based platform using Node.js, Express, and MongoDB with AWS infrastructure (EC2, S3, IAM roles), leading to 30% better API performance
+
+Managed CI/CD pipelines with Docker, GitHub Actions, and Kubernetes orchestration
+
+Led backend integration with REST APIs and GraphQL layers for client dashboards
+
+Kennect Inc. (Remote) — Software Developer Engineer
+Dec 2023 – Feb 2025
+
+Built RESTful services using Node.js and Express.js, handling role-based access, logging, and business logic separation
+
+Maintained MongoDB clusters and optimized queries, reducing average response times by 40%
+
+Infostics — Full Stack Developer
+Jun 2022 – Nov 2023
+
+Developed backend modules with validation, sessions, and CRUD operations using Node.js, Express, and MongoDB/SQL
+
+Introduced code reviews and DevOps best practices; optimized deployment pipelines
+
+🛠 Technical Skills
+Backend: Node.js, Express.js, REST APIs, JWT/OAuth2
+Databases: MongoDB, PostgreSQL, Redis
+Infrastructure: Docker, Kubernetes, AWS (EC2, S3, IAM, CloudWatch)
+Testing: Jest, Mocha, Postman, CI/CD
+DevOps Tools: Git, GitHub Actions, Terraform (basic)
+Other: Microservices, API design, Cross-functional collaboration
+
+🌟 Projects
+CryptoInsight Dashboard
+Visualized real-time crypto trends using React & Node.js APIs, integrated with AWS-hosted backend and PostgreSQL for user analytics.
+
+Insurance Claim Automation System
+Built a Python-Node.js pipeline that parsed incoming claims, extracted data via NLP, and created automated leads—cutting manual load by 85%.
+
+📚 Certifications & Honors
+AWS Certified Developer – Associate (2024)
+
+Winner at CodeChef May Starter 2021 (Rank: 900+)
+
+Technical Head, GeeksforGeeks Student Chapter (2021)

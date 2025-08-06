@@ -45,46 +45,66 @@ This AI-powered platform helps users upload their resume and a job description (
 ## 🧠 Key Features & Flow
 
 1. **User uploads Resume + Job Description via UI**
-2. Node.js backend:
-   - Parses resume (PDF → JSON)
-   - Sends JD + Resume to AI microservice
-3. AI microservice:
-   - Converts JD + Resume to embeddings
-   - Compares vectors → similarity + skill gaps
-   - Uses FAISS for fast matching
-4. Backend:
-   - Saves results in MongoDB
-   - Fetches LinkedIn roles via scraping (Puppeteer or SerpAPI)
-5. Frontend:
-   - Displays matched skills, missing ones, suggestions
-   - Job suggestions
-   - Option to download improved resume or skill report
+
+### ✅ Backend Flow Enhancements
+1. 🔄 **Accepted Resume + JD via API**
+   - Form: `multipart/form-data`
+   - Endpoint parses files and sends content to AI service
+
+2. 🧠 **AI Microservice Core Enhancements**
+   - **Resume & JD Parsing:** done using `pdfplumber` / `PyMuPDF`
+   - **Embeddings:** `OpenAI text-embedding-ada-002`
+   - **Similarity Matching:**
+     - Used `FAISS IndexFlatL2` for fast semantic matching
+     - Calculated **Cosine Similarity** score using `sklearn.metrics.pairwise.cosine_similarity`
+   - **Keyword & Skill Extraction:**
+     - NLP with `spaCy` (`en_core_web_sm`)
+     - Extracted `NOUN`, `PROPN` keywords from both resume and JD
+     - Skills matched against `skills.txt` (all skills included)
+   - **Role Classification (Zero-shot):**
+     - Used `transformers.pipeline("zero-shot-classification")`
+     - Model: `facebook/bart-large-mnli`
+     - Predicted role (e.g., "Data Scientist") with confidence score
+   - **Recommendations:**
+     - Based on similarity score, matched skills, missing skills, and intent
+     - Generated human-friendly suggestions using `get_recommendation()`
+
+3. 📦 **Output Structure Returned**
+   ```json
+   {
+     "fit_score": 87.23,
+     "jd_role_prediction": "Backend Developer",
+     "jd_confidence": 0.92,
+     "matched_skills": ["node.js", "docker", "mongodb"],
+     "missing_skills": ["kubernetes", "aws"],
+     "resume_keywords": ["node.js", "api", "mongo", "express"],
+     "job_keywords": ["aws", "kubernetes", "node.js", "api"],
+     "recommendations": [
+       "You're on the right track. Try refining your projects or experience sections.",
+       "Consider adding these skills: kubernetes, aws",
+       "Add more examples/projects that highlight: node.js, docker, mongodb",
+       "Make sure your resume aligns with the 'Backend Developer' role expectations."
+     ]
+   }
 
 ---
 
 ## 🧪 AI/ML Layer
 
-| Task                         | Tech Used                     |
-|------------------------------|-------------------------------|
-| Resume & JD Parsing          | `pdfplumber`, `PyMuPDF`       |
-| Embedding Generation         | `OpenAI Embeddings (text-embedding-ada-002)` |
-| Vector Matching              | `FAISS`                       |
-| Recommendations              | `Scikit-learn` + keyword rank |
-| LinkedIn Role Suggestions    | Puppeteer / SerpAPI           |
+### 🧠 AI/ML Layer Enhancements
 
----
-
-## ☁️ Friendly Services
-
-| Component         | Free Tier Option           |
-|-------------------|----------------------------|
-| MongoDB           | [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) |
-| Redis             | [Upstash Redis](https://upstash.com/) |
-| Resume Upload     | [Cloudinary](https://cloudinary.com/) or [S3 Free Tier](https://aws.amazon.com/s3/) |
-| AI API            | [OpenAI (Free Credit)](https://platform.openai.com/account/usage) |
-| Frontend Hosting  | [Vercel (Free)](https://vercel.com) |
-| Backend Hosting   | [EC2 t2.micro (Free for 12 months)](https://aws.amazon.com/ec2/) |
-| AI Service Host   | [Hugging Face Spaces (Free)](https://huggingface.co/spaces) / [Render](https://render.com/) |
+| Task                         | Tech Used                                                                 |
+|------------------------------|---------------------------------------------------------------------------|
+| Resume & JD Parsing          | `pdfplumber`, `PyMuPDF`, `spaCy`                                         |
+| Embedding Generation         | `OpenAI Embeddings (text-embedding-ada-002)`                             |
+| Vector Indexing              | `FAISS` (`IndexFlatL2`)                                                  |
+| Similarity Calculation       | `cosine_similarity` (`scikit-learn`)                                     |
+| Role Classification          | `transformers.pipeline` – `facebook/bart-large-mnli` (Zero-Shot)         |
+| Keyword Extraction           | `spaCy` noun/proper noun filtering                                       |
+| Skill Matching               | Custom matcher using curated `skills.txt` with spaCy                     |
+| Fit Score Calculation        | Custom cosine + FAISS match score (`match_score`)                        |
+| Recommendations              | Custom rules based on score + missing/matched skills                     |
+| LinkedIn Role Suggestions    | `Puppeteer` / `SerpAPI` (scraping & job fetching, later phase) 
 
 ---
 
@@ -98,63 +118,3 @@ This AI-powered platform helps users upload their resume and a job description (
 
 
 ---
-
-## 🚀 Roadmap & Steps to Complete This Project
-
-### 🔹 Phase 1: Design & Setup
-- [ ] Draft `architecture.md`, `README.md`
-- [ ] Set up GitHub repo with folders: `/frontend`, `/backend`, `/ai_service`, `/docs`
-- [ ] Create mock UI on Next.js with Resume + JD upload
-
-### 🔹 Phase 2: Backend & AI Service
-- [ ] Build Express.js REST API: `/upload-resume`, `/analyze`, `/recommend-roles`
-- [ ] Setup MongoDB Atlas DB
-- [ ] Create FastAPI service:
-  - Embed text via OpenAI
-  - Use FAISS for similarity
-  - Return skill gaps + score
-
-### 🔹 Phase 3: Integrate Frontend
-- [ ] Connect frontend to backend using Axios
-- [ ] Display skill match score, missing skills, suggestions
-- [ ] Add LinkedIn job fetching via API/scraping
-
-### 🔹 Phase 4: Polish & Deploy
-- [ ] Deploy frontend to Vercel
-- [ ] Deploy backend to EC2 (Ubuntu + Nginx + PM2)
-- [ ] Deploy AI microservice to Render/HF Spaces
-- [ ] Use Upstash Redis if caching needed
-
-### 🔹 Phase 5: Documentation & Showcase
-- [ ] Write `api.md` for all backend endpoints
-- [ ] Add `system_design.md` with diagrams (draw.io or Excalidraw)
-- [ ] Record short demo video
-- [ ] Publish on LinkedIn + Resume
-
----
-
-## 🧾 Future Enhancements
-
-- [ ] Add login using Clerk/Auth0
-- [ ] Skill-based resume auto-generator
-- [ ] Dashboard with analytics (how many JDs matched, trends, etc.)
-- [ ] GPT-4 generated bullet points / resume rewrites
-
----
-
-## 📘 Learnings Showcase (To Add in README)
-
-- Semantic Search with OpenAI + FAISS
-- Resume Parsing with PDF to JSON
-- Node.js scalable API architecture
-- AI + Full-stack integration
-- MongoDB + Redis as scalable data layer
-- Cloud deployment: Vercel + EC2
-
----
-
-## 📎 License & Credits
-- OpenAI Embeddings API
-- FAISS (Facebook AI Similarity Search)
-- MongoDB Atlas
-- Redis Upstash

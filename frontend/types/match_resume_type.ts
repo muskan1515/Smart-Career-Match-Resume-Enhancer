@@ -1,12 +1,11 @@
+import { MatchResult } from "@/components/resumeMatcher/types";
+
 export interface UploadResumeRequest {
-  file: File;
+  formData: FormData
 }
 
 export interface UploadResumeResponse {
   success: boolean;
   message: string;
-  data?: {
-    filename: string;
-    jobMatches?: string[];
-  };
+  data?: MatchResult
 }

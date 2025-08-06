@@ -9,4 +9,16 @@ export const api = axios.create({
     Accept: 'application/json',
   },
   withCredentials: true,
+  timeout: 300000
+});
+
+
+export const jsonAPI = axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+  },
+  withCredentials: true,
+  timeout: 300000
 });

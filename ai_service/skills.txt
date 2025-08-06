@@ -1,0 +1,105 @@
+python
+core python
+advanced python
+java
+core java
+spring
+spring boot
+java ee
+sql
+mysql
+postgresql
+oracle sql
+mssql
+database
+data modeling
+react
+react.js
+reactjs
+redux
+react hooks
+next.js
+node.js
+nodejs
+express
+express.js
+api development
+rest api
+graphql
+aws
+amazon web services
+ec2
+s3
+lambda
+cloudwatch
+rds
+route53
+iam
+ecr
+ecs
+cloudformation
+docker
+containerization
+docker-compose
+dockerfile
+machine learning
+ml
+supervised learning
+unsupervised learning
+model training
+sklearn
+data analysis
+exploratory data analysis
+eda
+data cleaning
+data wrangling
+data visualization
+nlp
+natural language processing
+text classification
+named entity recognition
+bert
+transformers
+tensorflow
+tf
+keras
+neural networks
+deep learning
+pytorch
+torch
+cnn
+rnn
+lstm
+linux
+unix
+bash
+shell scripting
+ubuntu
+centos
+git
+version control
+github
+gitlab
+bitbucket
+kubernetes
+k8s
+container orchestration
+helm
+mongodb
+no sql
+nosql
+mongo
+flask
+flask api
+flask-restful
+fastapi
+async api
+django
+django rest framework
+drf
+pandas
+dataframes
+numpy
+numerical computing
+array manipulation
+vectorization
